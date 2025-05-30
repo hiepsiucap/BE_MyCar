@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Size;
 public class ChangeUserInfoDTO {
 	@Size(min = 1, message = "Tên không đươợc trống")
 	private String lastName;
-	@Size(min = 1, message = "Họ không đươợc trống")
+	@Size(min = 1, message = "Họ không đươợc trốngg")
 	private String firstName;
 
 	@Pattern(regexp = "[0-9]{10}", message = "Số điện thoại không hợp lệ.")
