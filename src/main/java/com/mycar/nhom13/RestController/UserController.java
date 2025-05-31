@@ -95,7 +95,7 @@ public class UserController {
 		int id = getUserIdFromCookie(httpServletRequest);
 		boolean isPasswordChanged = userService.changePassword(changePasswordDto, id);
 
-		return new ResponseEntity<>(new StringResponse("Đổi mật khẩu thành công"), new HttpHeaders(), HttpStatus.OK);
+		return new ResponseEntity<>(new StringResponse("Đổi mật khẩu thành công!"), new HttpHeaders(), HttpStatus.OK);
 
 	}
 
