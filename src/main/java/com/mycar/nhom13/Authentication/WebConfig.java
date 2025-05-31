@@ -30,7 +30,7 @@ public class WebConfig {
 		var urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
 		var corsConfiguration = new CorsConfiguration();
 		corsConfiguration.setAllowCredentials(true);
-		corsConfiguration.setAllowedOrigins(List.of("http://localhost:8080", "http://localhost:5173"));
+		corsConfiguration.setAllowedOrigins(List.of("http://localhost:8080", "https://staging.d25yrxnhs8vh9u.amplifyapp.com"));
 		corsConfiguration.setAllowedHeaders(List.of(ORIGIN, ACCESS_CONTROL_ALLOW_ORIGIN, CONTENT_TYPE, ACCEPT,
 				AUTHORIZATION, "X-Requested-With", ACCESS_CONTROL_REQUEST_METHOD, ACCESS_CONTROL_REQUEST_HEADERS,
 				ACCESS_CONTROL_ALLOW_CREDENTIALS));
