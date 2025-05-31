@@ -55,7 +55,7 @@ public class AuthController {
 	public ResponseEntity<String> register(@RequestBody @Valid RegisterDTO registerDto) {
 
 		if (userService.findByEmail(registerDto.getEmail()) != null) {
-			return new ResponseEntity<>("Username is taken!!!!!", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("Username is taken!!!!!!", HttpStatus.BAD_REQUEST);
 		}
 
 		User user = new User();
