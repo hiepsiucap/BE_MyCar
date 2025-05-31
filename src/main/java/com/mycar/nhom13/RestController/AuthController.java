@@ -1,15 +1,9 @@
 package com.mycar.nhom13.RestController;
 
-import com.mycar.nhom13.Authentication.CookiesAuthenticationFilter;
-import com.mycar.nhom13.Dto.RegisterDTO;
-import com.mycar.nhom13.Entity.User;
-import com.mycar.nhom13.Service.AuthService;
-import com.mycar.nhom13.Service.UserService;
-import jakarta.servlet.http.Cookie;
-
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.validation.Valid;
+import java.nio.CharBuffer;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,10 +14,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.nio.CharBuffer;
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
+import com.mycar.nhom13.Authentication.CookiesAuthenticationFilter;
+import com.mycar.nhom13.Dto.RegisterDTO;
+import com.mycar.nhom13.Entity.User;
+import com.mycar.nhom13.Service.AuthService;
+import com.mycar.nhom13.Service.UserService;
+
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 
 @RestController
 public class AuthController {
@@ -44,8 +44,12 @@ public class AuthController {
 		authCookie.setSecure(true);
 		authCookie.setMaxAge((int) Duration.of(1, ChronoUnit.DAYS).toSeconds());
 		authCookie.setPath("/");
-
-		response.addCookie(authCookie);
+		
+		// Thêm cấu hình cho cross-origin
+		response.setHeader("Set-Cookie", String.format("%s=%s; Max-Age=%d; Path=/; HttpOnly; Secure; SameSite=None",
+				CookiesAuthenticationFilter.COOKIE_NAME,
+				authService.createToken(user),
+				(int) Duration.of(1, ChronoUnit.DAYS).toSeconds()));
 
 		return ResponseEntity.ok(user);
 	}
