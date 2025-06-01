@@ -4,15 +4,20 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Locations")
 public class Location {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "location_seq")
-	@SequenceGenerator(name = "location_seq", sequenceName = "location_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "location_id")
 	private Long locationId;
 

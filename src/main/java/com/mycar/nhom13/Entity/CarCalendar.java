@@ -1,18 +1,27 @@
 package com.mycar.nhom13.Entity;
 
-import jakarta.persistence.*;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name = "Car_calendars")
 public class CarCalendar {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "calendar_seq")
-	@SequenceGenerator(name = "calendar_seq", sequenceName = "calendar_seq", initialValue = 50, allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "calendar_id")
 	private int calendarId;
 
