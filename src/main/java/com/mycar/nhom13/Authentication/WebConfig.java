@@ -32,6 +32,7 @@ public class WebConfig {
 		corsConfiguration.setAllowedOrigins(List.of(
 			"http://localhost:8080", 
 			"http://localhost:3000",
+				"https://d39wbnvl8pysap.cloudfront.net/",
 			"https://d39wbnvl8pysap.cloudfront.net",
 			"https://staging.d25yrxnhs8vh9u.amplifyapp.com"
 		));
