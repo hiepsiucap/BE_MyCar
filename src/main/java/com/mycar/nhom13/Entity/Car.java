@@ -24,8 +24,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Car {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "car_seq")
-	@SequenceGenerator(name = "car_seq", sequenceName = "car_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "car_id")
 	private int carId;
 

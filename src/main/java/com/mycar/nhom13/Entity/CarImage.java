@@ -2,14 +2,21 @@ package com.mycar.nhom13.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Car_Images")
 public class CarImage {
 	@Id()
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "image_seq")
-	@SequenceGenerator(name = "image_seq", sequenceName = "image_seq", initialValue = 50, allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "image_id")
 	public int imageId;
 
