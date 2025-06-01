@@ -40,19 +40,19 @@ public interface CarRepository extends JpaRepository<Car, Integer>, JpaSpecifica
 			+ "    c.seat, \r\n"
 			+ "    c.number_of_rental, \r\n"
 			+ "    c.cost, \r\n"
-			+ "    c.location_id  FROM Cars c WHERE NOT EXISTS (SELECT 1 FROM car_calendars s WHERE s.car_id = c.car_id AND (s.start_date <= TO_DATE(:endDate, 'DD-MON-YY') AND s.end_date >= TO_DATE(:startDate, 'DD-MON-YY')))", nativeQuery = true)
+			+ "    c.location_id  FROM cars c WHERE NOT EXISTS (SELECT 1 FROM car_calendars s WHERE s.car_id = c.car_id AND (s.start_date <= TO_DATE(:endDate, 'DD-MON-YY') AND s.end_date >= TO_DATE(:startDate, 'DD-MON-YY')))", nativeQuery = true)
 	Page<Car> findByCalendar(@Param("startDate") String startDate, @Param("endDate") String endDate, Pageable pageable);
 
 
-	@Query(value = "SELECT c.* FROM Cars c INNER JOIN Rentals r ON r.car_id = c.car_id WHERE r.customer_id = :userId AND  r.rental_status = :status", nativeQuery = true)
+	@Query(value = "SELECT c.* FROM cars c INNER JOIN Rentals r ON r.car_id = c.car_id WHERE r.customer_id = :userId AND  r.rental_status = :status", nativeQuery = true)
 	List<Car> findCarsByRentalStatus(@Param("status") String status, @Param("userId") int userId);
 
-	@Query(value = "SELECT c.* FROM Cars c INNER JOIN Rentals r ON r.car_id = c.car_id WHERE r.customer_id = :userId", nativeQuery = true)
+	@Query(value = "SELECT c.* FROM cars c INNER JOIN Rentals r ON r.car_id = c.car_id WHERE r.customer_id = :userId", nativeQuery = true)
 	List<Car> findCarsByUserId(@Param("userId") int userId);
 
-	@Query(value = "SELECT c.* FROM Cars c INNER JOIN Rentals r ON r.car_id = c.car_id WHERE r.customer_id = :userId AND r.rental_status != 'pending'", nativeQuery = true)
+	@Query(value = "SELECT c.* FROM cars c INNER JOIN Rentals r ON r.car_id = c.car_id WHERE r.customer_id = :userId AND r.rental_status != 'pending'", nativeQuery = true)
 	List<Car> findCarsByUserIdIgnorePending(@Param("userId") int userId);
 	
-	@Query(value = "SELECT c.* FROM Cars c WHERE c.user_id = :userId", nativeQuery = true)
+	@Query(value = "SELECT c.* FROM cars c WHERE c.user_id = :userId", nativeQuery = true)
 	List<Car> findMyCarsByUserId(@Param("userId") int userId);
 }
